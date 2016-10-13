@@ -3,6 +3,8 @@ require('./help')
 
 var fs = require('fs')
 var path = require('path')
+var util=require('util')
+var statMode = require('stat-mode');
 function touch() {
     var pathFile = path.dirname(process.argv[1]) + "\\" + process.argv[2];
     //if(path.dirname(process.argv[1])!='')
@@ -13,12 +15,13 @@ function touch() {
             process.stdout.write('no such file or directory')
             return
         }
-        data.forEach(function (nameFile) {
-            fs.stat(nameFile.toString(), function (err, stats) {
-                //var content=fs.fsyncSync(pathFile1)
-                console.log(stats.mode + '\t' + stats.mtime)
-                console.log('\n')
-            });
+        data.forEach(function (file) {
+            var nameFile=file.toString()
+            fs.stat(nameFile.toString(),function(err,stats){
+                if (err) return;
+                var mode=new statMode(stats)
+                console.log(mode.toString())
+            })
         })
 
 
