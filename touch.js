@@ -5,6 +5,8 @@ var fs = require('fs')
 var path = require('path')
 var util=require('util')
 var statMode = require('stat-mode');
+var dateFormat = require('dateformat');
+
 function touch() {
     var pathFile = path.dirname(process.argv[1]) + "\\" + process.argv[2];
     //if(path.dirname(process.argv[1])!='')
@@ -20,7 +22,10 @@ function touch() {
             fs.stat(nameFile.toString(),function(err,stats){
                 if (err) return;
                 var mode=new statMode(stats)
-                console.log(mode.toString())
+                var date=new Date(stats.mtime)
+                var stDate=dateFormat(date,'mmm dd HH:MM')
+                // console.log(stats)
+                console.log(mode.toString()+' '+stats.size+' '+ stDate+' '+nameFile)
             })
         })
 
