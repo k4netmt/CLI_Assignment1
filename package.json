@@ -1,5 +1,14 @@
 {
   "name": "assignment1",
+  "bin":{
+    "cli-echo":"./echo.js",
+    "cli-cat":"./cat.js",
+    "cli-touch":"./touch.js",
+    "cli-ls":"./ls.js",
+    "cli-mkdir":"./mkdir.js",
+    "cli-rm":"./rm.js",
+    "cli-grep":"./grep.js"
+  },
   "version": "1.0.0",
   "description": "assignment1 of coderschool",
   "main": "index.js",
