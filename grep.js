@@ -26,9 +26,7 @@ function cat(keyWord, pathFile,tempFile,flagFolder) {
 }
 
 function main() {
-    if (process.argv[2] === 'undefine')
-        return
-    if (process.argv[3] === 'underfine')
+    if (process.argv.length!=4)
         return
     var keyWord = process.argv[2]
     var flagFolder=0
@@ -36,7 +34,6 @@ function main() {
 
     } else {
         var rootPath = path.dirname(process.argv[1]) + '\\' + process.argv[3]
-
         fs.stat(rootPath, function (err, stats) {
             if (stats.isDirectory()) {
                 flagFolder=1
